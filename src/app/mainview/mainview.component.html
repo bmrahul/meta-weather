@@ -1,0 +1,47 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Distance</th>
+      <th scope="col">View</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let city of result; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{city.title}}</td>
+      <td>{{city.distance}}</td>
+      <td class="view" (click)="viewCity(city)"><span><img src="../../assets/images/eye.svg" alt="view"></span></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Name:</h5><span class="mtt">{{weatherData.title}}</span>
+    <h5 class="modal-title ml-3">Time Zone:</h5><span class="mtt">{{weatherData.timezone}}</span>
+    <h5 class="modal-title ml-3">Time Zone:</h5><span class="mtt">{{weatherData.time | date: 'dd/MM/yyyy'}}</span>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid card-box">
+      <div class="card mt-3 mb-3" style="width: 18rem;" *ngFor="let cw of weatherData.consolidated_weather">
+        <div class="card-body">
+          <span class="card-text"><b>Date:</b></span><span class="card-text ml-2">{{cw.applicable_date | date: 'dd/MM/yyyy'}}</span><br>
+          <span class="card-text"><b>Status:</b></span><span class="card-text ml-2">{{cw.weather_state_name}}</span><br>
+          <span class="card-text"><b>Temperature:</b></span><span class="card-text ml-2">{{cw.the_temp | number}}</span><br>
+          <span class="card-text"><b>Wind Speed:</b></span><span class="card-text ml-2">{{cw.wind_speed | number}}</span><br>
+          <span class="card-text"><b>Pressure:</b></span><span class="card-text ml-2">{{cw.air_pressure | number}}</span><br>
+          <span class="card-text"><b>Humidity:</b></span><span class="card-text ml-2">{{cw.humidity | number}}</span><br>
+          <span class="card-text"><b>Visibility:</b></span><span class="card-text ml-2">{{cw.visibility | number}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

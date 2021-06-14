@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <form class="d-flex">
+    <input class="form-control search-ht" name="search" type="search" placeholder="Search" [(ngModel)]="searchInfo">
+    <button class="btn btn-outline-success" type="submit" (click)="search()">Search</button>
+  </form>
+  <p><b>Note: </b>Coordinates to search for locations near. Comma separated lattitude and longitude e.g. "36.96,-122.02".</p>
+</div>
